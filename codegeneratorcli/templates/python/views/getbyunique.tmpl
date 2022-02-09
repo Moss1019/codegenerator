@@ -1,0 +1,7 @@
+@api_view(['GET'])
+def get_{tablename}_by_{colname}(request, {colname}):
+    {tablename} = store.get_{tablename}_by_{colname}({colname})
+    if {tablename} is None:
+        return HttpResponse(status=404)
+    result = {tablepascal}Serializer().serialize({tablename})
+    return HttpResponse(json.dumps(result), content_type='application/json')

@@ -1,0 +1,69 @@
+using {rootname}.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace {rootname}.Repositories.InMemory
+{
+    public class {tablepascal}Repository : BaseRepository<{tablepascal}>, I{tablepascal}Repository
+    {
+{childrepos}
+        public {tablepascal}Repository({childrepoargs}DbContext context)
+            : base(context)
+        {
+            collectionName = "{tablelower}";{childrepoassigns}
+            if (!collections.ContainsKey(collectionName))
+            {
+                collections[collectionName] = new List<{tablepascal}>();
+            }
+        }
+
+        public {tablepascal} SelectById(Guid {primarycolumncamel})
+        {
+            var result = Get<{tablepascal}>(collectionName).Where(e => e.{primarycolumnpascal} == {primarycolumncamel}).FirstOrDefault();
+            if (result == null)
+            {
+                throw new InvalidOperationException("{tablepascal} not found");
+            }{childlists}
+            return result;
+        }
+
+        public {tablepascal} Insert({tablepascal} entity)
+        {
+            Get<{tablepascal}>(collectionName).Add(entity);
+            return entity;
+        }
+
+        public IEnumerable<{tablepascal}> SelectAll()
+        {
+            var results = Get<{tablepascal}>(collectionName);
+            foreach(var result in results)
+            {{childlists}
+            }
+            return results;
+        }
+
+        public bool Update({tablepascal} entity)
+        {
+            var entityToUpdate = Get<{tablepascal}>(collectionName).Where(e => e.{primarycolumnpascal} == entity.{primarycolumnpascal}).FirstOrDefault();
+            if(entityToUpdate == null)
+            {
+                return false;
+            }
+            Set(Get<{tablepascal}>(collectionName).Where(e => e.{primarycolumnpascal} != entityToUpdate.{primarycolumnpascal}).ToList());
+            Get<{tablepascal}>(collectionName).Add(entity);
+            return true;
+        }
+
+        public bool Delete(Guid {primarycolumncamel})
+        {
+            var entityToRemove = Get<{tablepascal}>(collectionName).Where(e => e.{primarycolumnpascal} == {primarycolumncamel}).FirstOrDefault();
+            if(entityToRemove == null)
+            {
+                return false;
+            }{deletechildren}
+            Set(Get<{tablepascal}>(collectionName).Where(e => e.{primarycolumnpascal} != {primarycolumncamel}).ToList());
+            return true;
+        }{selectforparent}{selectbyunique}
+    }
+}

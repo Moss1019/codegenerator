@@ -1,0 +1,76 @@
+using {rootname}.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace {rootname}.Repositories
+{
+    public class {tablepascal}Repository : I{tablepascal}Repository
+    {
+        private IConfiguration config;
+
+        public {tablepascal}Repository(IConfiguration config)
+        {
+            this.config = config;
+        }
+
+        public bool Delete(Guid {primarycamel})
+        {
+            using var context = new {rootname}Context(config);
+            var e = context.{tablepascal}s
+                .Where(x => x.{primarypascal} == {primarycamel})
+                .FirstOrDefault();
+            if(e != null)
+            {
+                context.Remove(e);
+                context.SaveChanges();
+            }
+            return true;
+        }
+
+        public {tablepascal} Insert({tablepascal} entity)
+        {
+            using var context = new {rootname}Context(config);
+            context.{tablepascal}s.Add(entity);
+            context.SaveChanges();
+            return entity;
+        }
+
+        public IEnumerable<{tablepascal}> SelectAll()
+        {
+            using var context = new {rootname}Context(config);
+            return context.{tablepascal}s{childlists}
+                .ToList();
+        }
+
+        public {tablepascal} SelectById(Guid {primarycamel})
+        {
+            using var context = new {rootname}Context(config);
+            var e = context.{tablepascal}s
+                .Where(x => x.{primarypascal} == {primarycamel}){childlists}
+                .FirstOrDefault();
+            if(e != null)
+            {
+                return e;
+            }
+            throw new InvalidOperationException("{tablepascal} not found");
+        }
+
+        public bool Update({tablepascal} entity)
+        {
+            using var context = new {rootname}Context(config);
+            var e = context.{tablepascal}s
+                .Where(x => x.{primarypascal} == entity.{primarypascal})
+                .FirstOrDefault();
+            if(e != null)
+            {
+                context.{tablepascal}s.Update(entity);
+                context.SaveChanges();
+                return true;
+            }
+            return false;
+        }{selectforparent}{selectbyunique}
+    }
+}

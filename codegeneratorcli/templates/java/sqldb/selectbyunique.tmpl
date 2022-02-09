@@ -1,0 +1,8 @@
+  public {tablepascal} selectBy{columnpascal}({coldatatype} value) {
+    String jpa = String.format("select x from {tablecamel} x where x.{colname} = '%s'", value);
+    List<{tablepascal}> res = em.createQuery(jpa).getResultList();
+    if(res.size() == 0) {
+      return null;
+    }
+    return res.get(0);
+  }

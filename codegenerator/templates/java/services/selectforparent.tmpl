@@ -1,0 +1,7 @@
+	public List<{tablepascal}View> selectOf{parentpascal}({parentprimarydatatype} {parentprimarycamel}) {
+		List<{tablepascal}> dbResult = repo.selectOf{parentpascal}({parentprimarycamel});
+		return dbResult
+				.stream()
+				.map(x -> {tablepascal}Mapper.toView(x))
+				.collect(Collectors.toList());
+	}

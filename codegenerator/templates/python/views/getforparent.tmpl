@@ -1,0 +1,5 @@
+@api_view(['GET'])
+def get_{tablename}s_for_{parentname}(request, {parentprimary}):
+    {tablename}s = store.get_{tablename}s_for_{parentname}({parentprimary})
+    result = [{tablepascal}Serializer().serialize(entry) for entry in {tablename}s]
+    return HttpResponse(json.dumps(result, cls=UUIDEncoder), content_type='application/json')

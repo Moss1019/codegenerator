@@ -1,0 +1,9 @@
+  Future<List<{tablepascal}>> get{tablepascal}sFor{parentpascal}(String {parentprimarycamel}) async {
+    final res = await http.get(Uri.parse('$baseUrl/{tablelower}s/for{parentpascal}/${parentprimarycamel}'), headers: _fetchHeaders);
+    if(res.statusCode == 200) {
+      Iterable list = jsonDecode(res.body);
+      return List<{tablepascal}>.from(list.map((json) => {tablepascal}.fromJson(json)));
+    } else {
+      throw Exception('Could not load {tablelower}s for user ${res.statusCode}');
+    }
+  }

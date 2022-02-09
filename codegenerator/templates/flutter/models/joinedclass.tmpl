@@ -1,0 +1,24 @@
+
+class {tablepascal} {
+  final {primarycoltype} {primarycolcamel};
+  final {secondarycoltype} {secondarycolcamel};
+
+  {tablepascal}({
+    this.{primarycolcamel} = {primarydefault},
+    this.{secondarycolcamel} = {secondarydefault}
+  });
+
+  factory {tablepascal}.fromJson(Map<String, dynamic> json) {
+    return {tablepascal}(
+      {primarycolcamel}: json['{primarycolcamel}'],
+      {secondarycolcamel}: json['{secondarycolcamel}']
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      '{primarycolcamel}': {primarycolcamel},
+      '{secondarycolcamel}': {secondarycolcamel}
+    };
+  }
+}

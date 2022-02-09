@@ -1,0 +1,35 @@
+using {rootname}.Mappers;
+using {rootname}.Repositories;
+using {rootname}.Views;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace {rootname}.Services
+{
+    public class {tablepascal}Service : I{tablepascal}Service
+    {
+        private I{tablepascal}Repository repo;
+
+        public {tablepascal}Service(I{tablepascal}Repository repo)
+        {
+            this.repo = repo;
+        }
+
+        public bool Delete(Guid {primarycolumncamel}, Guid {secondarycolumncamel})
+        {
+            return repo.Delete({primarycolumncamel}, {secondarycolumncamel});
+        }
+
+        public {tablepascal}View Insert({tablepascal}View view)
+        {
+            return repo.Insert(view.ToEntity()).ToView();
+        }
+
+        public IEnumerable<{secondarytablepascal}View> Select{tablepascal}s(Guid {primarycolumncamel})
+        {
+            return repo.Select{tablepascal}s({primarycolumncamel})
+                .Select(e => e.ToView());
+        }
+    }
+}

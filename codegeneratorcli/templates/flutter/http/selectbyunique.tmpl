@@ -1,0 +1,8 @@
+  Future<{tablepascal}> get{tablepascal}By{colpascal}(String {colcamel}) async {
+    final res = await http.get(Uri.parse('$baseUrl/{tablelower}s/by{colpascal}/${colcamel}'), headers: _fetchHeaders);
+    if(res.statusCode == 200) {
+      return {tablepascal}.fromJson(jsonDecode(res.body));
+    } else {
+      throw Exception('Could not load {tablelower} ${res.statusCode}');
+    }
+  }

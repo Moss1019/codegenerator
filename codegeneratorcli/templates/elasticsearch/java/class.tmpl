@@ -1,0 +1,109 @@
+package {rootname}.elasticinfra;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import {rootname}.view.{tablepascal}View;
+
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.update.UpdateResponse;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.core.TimeValue;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+
+import java.util.UUID;
+
+public class {tablepascal}ViewElasticClient implements AutoCloseable {
+  private final RestHighLevelClient client;
+
+  public {tablepascal}ViewElasticClient() {
+    client = new RestHighLevelClient(
+      RestClient.builder(
+        new HttpHost("localhost", 9200, "http")));
+  }
+
+  public boolean index({tablepascal}View {tablecamel}View) {
+    String json = serialize({tablecamel}View);
+    if(json == null) {
+      return false;
+    }
+    IndexRequest req = new IndexRequest("{tablecamel}s");
+    req.id({primarystring});
+    req.source(json, XContentType.JSON);
+    try {
+      IndexResponse res = client.index(req, RequestOptions.DEFAULT);
+      return true;
+    } catch (Exception ignored) {
+      return false;
+    }
+  }
+
+  public boolean delete({primarydatatype} {primarycamel}) {
+    DeleteRequest req = new DeleteRequest("{tablecamel}s");
+    req.id({primaryfieldstring});
+    try {
+      DeleteResponse res = client.delete(req, RequestOptions.DEFAULT);
+      return true;
+    } catch (Exception ignored) {
+      return false;
+    }
+  }
+
+  public boolean update({tablepascal}View {tablecamel}View) {
+    UpdateRequest req = new UpdateRequest("{tablecamel}s", {primarystring});
+    try {
+      UpdateResponse res = client.update(req, RequestOptions.DEFAULT);
+      return true;
+    } catch (Exception ignored) {
+      return false;
+    }
+  }
+
+  public {tablepascal}View getById({primarydatatype} {primarycamel}) {
+    GetRequest req = new GetRequest("{tablecamel}s");
+    req.id({primaryfieldstring});
+    try {
+      GetResponse res = client.get(req, RequestOptions.DEFAULT);
+      return deserialize(res.getSourceAsString());
+    } catch (Exception ignored) {
+      return null;
+    }
+  }{selectbyunique}
+
+  private String serialize({tablepascal}View {tablecamel}View) {
+    ObjectMapper objMapper = new ObjectMapper();
+    try {
+      return objMapper.writeValueAsString({tablecamel}View);
+    } catch (Exception ex) {
+      return null;
+    }
+  }
+
+  private {tablepascal}View deserialize(String json) {
+    ObjectMapper objMapper = new ObjectMapper();
+    try {
+      return objMapper.readValue(json, {tablepascal}View.class);
+    } catch (Exception ignored) {
+      return null;
+    }
+  }
+
+  @Override
+  public void close() throws Exception {
+    try {
+      client.close();
+    } catch (Exception ignored){}
+  }
+}

@@ -1,0 +1,17 @@
+package {rootname}.mapper;
+
+import {rootname}.entity.*;
+import {rootname}.view.*;
+
+public class {tablepascal}Mapper {
+	public static {tablepascal}View toView({tablepascal} {tablecamel}) {
+		return new {tablepascal}View({tablecamel}.get{primarypascal}(), {tablecamel}.get{secondarypascal}());
+	}
+
+  public static {tablepascal} toEntity({tablepascal}View {tablecamel}View) {
+		{tablepascal} {tablecamel} = new {tablepascal}();
+		{tablecamel}.set{primarypascal}({tablecamel}View.get{primarypascal}());
+		{tablecamel}.set{secondarypascal}({tablecamel}View.get{secondarypascal}());
+		return {tablecamel};
+	}
+}

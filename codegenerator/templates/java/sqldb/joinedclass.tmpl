@@ -1,0 +1,62 @@
+package {rootname}.repository;
+
+import {rootname}.entity.*;
+
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+@Repository
+@Transactional
+public class {tablepascal}Repository {
+  @PersistenceContext
+  private EntityManager em;
+
+  public {tablepascal} insert({tablepascal} {tablecamel}) {
+    {primarypascal} x1 = em.find({primarypascal}.class, {tablecamel}.get{primarycolpascal}());
+    if(x1 == null) {
+      return null;
+    }
+    {secondarypascal} x2 = em.find(Agent.class, {tablecamel}.get{secondarycolpascal}());
+    if(x2 == null) {
+      return null;
+    }
+    List<{secondarypascal}> {tablecamel}s = x1.get{tablepascal}s();
+    {tablecamel}s.add(x2);
+    x1.set{tablepascal}s({tablecamel}s);
+    em.flush();
+    return {tablecamel};
+  }
+
+  public boolean delete({primarydatatype} {primarycolcamel}, {secondarydatatype} {secondarycolcamel}) {
+    {primarypascal} x1 = em.find({primarypascal}.class, {primarycolcamel});
+    if (x1 == null) {
+      return false;
+    }
+    {secondarypascal} x2 = em.find({secondarypascal}.class, {secondarycolcamel});
+    if(x2 == null) {
+      return false;
+    }
+    List<{secondarypascal}> {tablecamel}s = x1.get{tablepascal}s();
+    {tablecamel}s.remove(x2);
+    x1.set{tablepascal}s({tablecamel}s);
+    em.flush();
+    return true;
+  }
+  
+  public List<{secondarypascal}> select{tablepascal}s({primarydatatype} {primarycolcamel}) {
+    {primarypascal} obj = em.find({primarypascal}.class, {primarycolcamel});
+    if (obj == null) {
+      return new ArrayList<>();
+    }
+    return obj.get{tablepascal}s();
+  }
+
+}

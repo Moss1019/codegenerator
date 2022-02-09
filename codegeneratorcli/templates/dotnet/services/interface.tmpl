@@ -1,0 +1,19 @@
+using CodeGeneratorTemplates.Views;
+using System;
+using System.Collections.Generic;
+
+namespace {rootname}.Services
+{
+    public interface I{tablepascal}Service
+    {
+        {tablepascal}View SelectById(Guid id);
+
+        {tablepascal}View Insert({tablepascal}View view);
+
+        IEnumerable<{tablepascal}View> SelectAll();
+
+        bool Delete(Guid id);
+
+        bool Update({tablepascal}View view);{selectforparent}{selectbyunique}
+    }
+}

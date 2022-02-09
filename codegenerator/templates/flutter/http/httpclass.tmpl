@@ -1,0 +1,62 @@
+
+import 'dart:convert';
+import 'package:{projectname}/services/http.dart';
+import 'package:{projectname}/models/{tablename}.dart';
+
+import 'package:http/http.dart' as http;
+
+class {tablepascal}HttpClient {
+  final Map<String, String> _fetchHeaders = {
+    'Content-Type': 'application/json; charset=UTF-8'
+  };
+  final Map<String, String> _modHeaders = {
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Accept': 'application/json'
+  };
+
+  Future<List<{tablepascal}>> get{tablepascal}s() async {
+    final res = await http.get(Uri.parse('$baseUrl/{tablelower}s'), headers: _fetchHeaders);
+    if(res.statusCode == 200) {
+      Iterable list = json.decode(res.body);
+      return List<{tablepascal}>.from(list.map((json) => {tablepascal}.fromJson(json)));
+    } else {
+      throw Exception('Could not load {tablelower}s ${res.statusCode}');
+    }
+  }
+
+  Future<{tablepascal}> get{tablepascal}(String {primarycamel}) async {
+    final res = await http.get(Uri.parse('$baseUrl/{tablelower}s/${primarycamel}'), headers: _fetchHeaders);
+    if(res.statusCode == 200) {
+      return {tablepascal}.fromJson(jsonDecode(res.body));
+    } else {
+      throw Exception('Could not load {tablelower} ${res.statusCode}');
+    }
+  }
+
+  Future<bool> delete{tablepascal}(String {primarycamel}) async {
+    final res = await http.delete(Uri.parse('$baseUrl/{tablelower}s/${primarycamel}'), headers: _fetchHeaders);
+    if(res.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception('Could not delete {tablelower} ${res.statusCode}');
+    }
+  }
+
+  Future<{tablepascal}> post{tablepascal}({tablepascal} {tablecamel}) async {
+    final res = await http.post(Uri.parse('$baseUrl/{tablelower}s'), headers: _modHeaders, body: jsonEncode({tablecamel}.toJson()));
+    if(res.statusCode == 200) {
+      return {tablepascal}.fromJson(jsonDecode(res.body));
+    } else {
+      throw Exception('Could not create {tablelower} ${res.statusCode}');
+    }
+  }{getforparent}{selectbyunqiue}
+
+  Future<bool> put{tablepascal}({tablepascal} {tablecamel}) async {
+    final res = await http.put(Uri.parse('$baseUrl/{tablelower}s'), headers: _modHeaders, body: jsonEncode({tablecamel}.toJson()));
+    if(res.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception('Could not update {tablelower} ${res.statusCode}');
+    }
+  }
+}

@@ -1,0 +1,36 @@
+package {rootname}.kafkainfra;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.apache.kafka.common.header.Headers;
+import org.apache.kafka.common.serialization.Serializer;
+
+import java.util.Map;
+
+import {rootname}.view.{tablepascal}View;
+
+public class {tablepascal}ViewSerializer implements Serializer<{tablepascal}View> {
+    @Override
+    public void configure(Map<String, ?> configs, boolean isKey) {
+        Serializer.super.configure(configs, isKey);
+    }
+
+    @Override
+    public byte[] serialize(String s, {tablepascal}View {tablecamel}View) {
+        ObjectMapper objMapper = new ObjectMapper();
+        try {
+            return objMapper.writeValueAsBytes({tablecamel}View);
+        } catch (Exception ignored){}
+        return new byte[0];
+    }
+
+    @Override
+    public byte[] serialize(String topic, Headers headers, {tablepascal}View data) {
+        return Serializer.super.serialize(topic, headers, data);
+    }
+
+    @Override
+    public void close() {
+        Serializer.super.close();
+    }
+}

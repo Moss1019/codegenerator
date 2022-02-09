@@ -1,0 +1,56 @@
+using System;
+using Microsoft.AspNetCore.Mvc;
+using {rootname}.Views;
+using {rootname}.Services;
+
+namespace {rootname}.Controllers
+{
+    [Route("api/{tablelower}s")]
+    [ApiController]
+    public class {tablepascal}Controller : ControllerBase
+    {
+        private readonly I{tablepascal}Service service;
+
+        public {tablepascal}Controller(I{tablepascal}Service service)
+        {
+            this.service = service;
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<{secondarytablepascal}View> Get{tablepascal}sFor{primarytablepascal}([FromRoute] string id)
+        {
+            Guid {primarycamel};
+            if (Guid.TryParse(id, out {primarycamel}))
+            {
+                return Ok(service.Select{tablepascal}s({primarycamel}));
+            }
+            return BadRequest("Malformed id");
+        }
+
+        [HttpPost("")]
+        public ActionResult<{tablepascal}View> Post{tablepascal}([FromBody] {tablepascal}View view)
+        {
+            return Ok(service.Insert(view));
+        }
+
+        [HttpDelete("{{primarylower}}/{{secondarylower}}")]
+        public ActionResult<string> Delete{tablepascal}([FromRoute] string {primarylower}, [FromRoute] string {secondarylower})
+        {
+            Guid {primarycamel};
+            if(Guid.TryParse({primarylower}, out {primarycamel}))
+            {
+                Guid {secondarycamel};
+                if(Guid.TryParse({secondarylower}, out {secondarycamel}))
+                {
+                    if(service.Delete({primarycamel}, {secondarycamel}))
+                    {
+                        return Ok("{tablepascal} unlinked");
+                    }
+                    return NotFound("Link does not exist");
+                }
+                return BadRequest("Malformed collaborator id");
+            }
+            return BadRequest("Malformed item id");
+        }
+    }
+}

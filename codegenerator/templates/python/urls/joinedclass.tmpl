@@ -1,0 +1,5 @@
+    path('api/{tablelower}s/', {tablename}_views.create_{tablename}),
+
+    re_path(r'api/{tablelower}s/(?P<{primaryname}>{primaryregextype})/(?P<{secondaryname}>{secondaryregextype})/', {tablename}_views.delete_{tablename}),
+
+    re_path(r'api/{tablelower}s/(?P<{primaryname}>{primaryregextype})/', {tablename}_views.get_{tablename}s_for_{primaryname}),

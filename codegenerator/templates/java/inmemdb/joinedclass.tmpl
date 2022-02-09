@@ -1,0 +1,55 @@
+package {rootname}.repository;
+
+import {rootname}.entity.*;
+
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+@Repository
+public class {tablepascal}Repository extends BaseRepository<{tablepascal}> {
+  private final String primaryCollectionName = "{primarycamel}s";
+  private final String secondaryCollectionName = "{secondarycamel}s";
+
+  public {tablepascal}Repository() {
+    super("{tablecamel}s");
+  }
+  
+  public {tablepascal} insert({tablepascal} {tablecamel}) {
+    collections.get(collectionName)
+        .put(UUID.randomUUID(), {tablecamel});
+    return {tablecamel};
+  }
+
+  public boolean delete(UUID {primarycolcamel}, UUID {secondarycolcamel}) {
+    Optional<UUID> key = collections.get(collectionName)
+        .keySet()
+        .stream()
+        .filter(x -> collections.get(collectionName).get(x).getPrimary().equals({primarycolcamel}) &&
+            ((JoinedRepoObj)collections.get(collectionName).get(x)).getSecondary().equals({secondarycolcamel}))
+        .findFirst();
+    if(key.isPresent()) {
+      collections.get(collectionName).remove(key.get());
+      return true;
+    }
+    return false;
+  }
+  
+  public List<{primarytablepascal}> select{tablepascal}s(UUID {primarycolcamel}) {
+    List<UUID> ids = collections.get(collectionName)
+        .values()
+        .stream()
+        .filter(x -> x.getPrimary().equals({primarycolcamel}))
+        .map(x -> (({tablepascal})x).getSecondary())
+        .collect(Collectors.toList());
+    return collections.get(secondaryCollectionName)
+        .values()
+        .stream()
+        .filter(x -> ids.contains(x.getPrimary()))
+        .map(x -> ({primarytablepascal})x)
+        .collect(Collectors.toList());
+  }
+}

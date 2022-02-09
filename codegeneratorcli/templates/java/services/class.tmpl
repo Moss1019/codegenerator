@@ -1,0 +1,50 @@
+package {rootname}.service;
+
+import org.springframework.stereotype.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import {rootname}.entity.*;
+import {rootname}.view.*;
+import {rootname}.mapper.*;
+import {rootname}.repository.*;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
+@Service
+public class {tablepascal}Service {
+	@Autowired
+	private {tablepascal}Repository repo;
+
+	public {tablepascal}View insert({tablepascal}View new{tablepascal}) {
+		{tablepascal} {tablecamel} = {tablepascal}Mapper.toEntity(new{tablepascal});{setprimary}
+		{tablepascal} result = repo.insert({tablecamel});
+		return {tablepascal}Mapper.toView(result);
+	}
+
+	public {tablepascal}View selectByPk({primarydatatype} value) {
+		{tablepascal} dbResult = repo.selectByPk(value);
+		if(dbResult == null) {
+			return null;
+		}
+		return {tablepascal}Mapper.toView(dbResult);
+	}
+
+	public List<{tablepascal}View> selectAll() {
+		List<{tablepascal}> dbResult = repo.selectAll();
+		return dbResult
+			.stream()
+			.map(x -> {tablepascal}Mapper.toView(x))
+			.collect(Collectors.toList());
+	}
+
+	public boolean update({tablepascal}View updated{tablepascal}) {
+		return repo.update({tablepascal}Mapper.toEntity(updated{tablepascal}));
+	}
+
+	public boolean delete({primarydatatype} id) {
+		return repo.delete(id);
+	}{selectforparent}{selectbyunique}
+}

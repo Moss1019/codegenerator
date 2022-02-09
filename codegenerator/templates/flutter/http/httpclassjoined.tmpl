@@ -1,0 +1,45 @@
+
+import 'dart:convert';
+import 'package:{projectname}/services/http.dart';
+import 'package:{projectname}/models/{tablename}.dart';
+import 'package:{projectname}/models/{primarytablename}.dart';
+
+import 'package:http/http.dart' as http;
+
+class {tablepascal}HttpClient {
+  final Map<String, String> _fetchHeaders = {
+    'Content-Type': 'application/json; charset=UTF-8'
+  };
+  final Map<String, String> _modHeaders = {
+    'Content-Type': 'application/json; charset=UTF-8',
+    'Accept': 'application/json'
+  };
+
+  Future<{tablepascal}> create{tablepascal}({tablepascal} {tablecamel}) async {
+    final res = await http.post(Uri.parse('$baseUrl/{tablelower}s'), headers: _modHeaders, body: jsonEncode({tablecamel}.toJson()));
+    if(res.statusCode == 200) {
+      return {tablepascal}.fromJson(jsonDecode(res.body));
+    } else {
+      throw Exception('Could not create {tablelower} ${res.statusCode}');
+    }
+  }
+
+  Future<bool> delete{tablepascal}(String {primarycamel}, String {secondarycamel}) async {
+    final res = await http.delete(Uri.parse('$baseUrl/{tablelower}s/${primarycamel}/{secondarycamel}'), headers: _fetchHeaders);
+    if(res.statusCode == 200) {
+      return true;
+    } else {
+      throw Exception('Could not delete {tablelower} ${res.statusCode}');
+    }
+  }
+
+  Future<List<User>> get{tablepascal}sFor{parentpascal}(String {primarycamel}) async {
+    final res = await http.get(Uri.parse('$baseUrl/{tablelower}s/${primarycamel}'), headers: _fetchHeaders);
+    if(res.statusCode == 200) {
+      Iterable list = jsonDecode(res.body);
+      return List<User>.from(list.map((json) => User.fromJson(json)));
+    } else {
+      throw Exception('Could not load {tablelower}s ${res.statusCode}');
+    }
+  }
+}

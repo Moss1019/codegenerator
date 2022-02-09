@@ -1,0 +1,34 @@
+import json
+
+from rest_framework.decorators import api_view
+from django.http import HttpResponse
+
+from {projectname}.data_store import {tablename}_store as store
+from {projectname}.serializers import UUIDEncoder, UUIDDecoder, {tablepascal}Serializer, {primarypascal}Serializer
+
+
+@api_view(['POST'])
+def create_{tablename}(request):
+    serializer = {tablepascal}Serializer()
+    obj = serializer.deserialize(request.body)
+    {tablename} = store.create_{tablename}(obj)
+    if {tablename} is None:
+        return HttpResponse(status=400)
+    result = serializer.serialize({tablename})
+    return HttpResponse(json.dumps(result, cls=UUIDEncoder))
+
+
+@api_view(['DELETE'])
+def delete_{tablename}(request, {primarycolname}, {secondarycolname}):
+    if store.delete_collaborator({primarycolname}, {secondarycolname}):
+        return HttpResponse()
+    else:
+        return HttpResponse(status=404)
+
+
+@api_view(['GET'])
+def get_{tablename}s_for_{primaryname}(request, {primarycolname}):
+    {tablename}s = store.get_{tablename}s_for_{primaryname}({primarycolname})
+    serializer = {primarypascal}Serializer()
+    result = [serializer.serialize(entry) for entry in {tablename}s]
+    return HttpResponse(json.dumps(result, cls=UUIDEncoder))

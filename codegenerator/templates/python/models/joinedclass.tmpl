@@ -1,0 +1,10 @@
+class {tablepascal}(models.Model, BaseObj):
+    {primaryname} = models.ForeignKey({primarypascal}, on_delete=models.CASCADE)
+    {secondaryname} = models.ForeignKey({secondarypascal}, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = (('{primaryname}', '{secondaryname}'), )
+
+    @staticmethod
+    def get_class():
+        return '{tablepascal}'

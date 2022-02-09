@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+
+kind: ReplicaSet
+
+metadata:
+  name: codegenweb
+  namespace: codegen-ns
+
+spec:
+  replicas: 1
+  selector:
+    matchExpressions:
+      - key: app
+        operator: In
+        values:
+          - codegenweb
+  
+  template:
+    metadata:
+      labels:
+        app: codegenweb
+  
+    spec:
+      containers:
+        - name: codegeneratorweb
+          # image: localhost:32000/codegeneratorweb:latest
+          image: codegeneratorweb
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+  

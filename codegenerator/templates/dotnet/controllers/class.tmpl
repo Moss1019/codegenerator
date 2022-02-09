@@ -1,0 +1,81 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using {rootname}.Views;
+using {rootname}.Services;
+
+namespace {rootname}.Controllers
+{
+    [Route("api/{tablelower}s")]
+    [ApiController]
+    public class {tablepascal}Controller : ControllerBase
+    {
+        private readonly I{tablepascal}Service service;
+
+        public {tablepascal}Controller(I{tablepascal}Service service)
+        {
+            this.service = service;
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<{tablepascal}View> Get{tablepascal}ById([FromRoute] string id)
+        {
+            Guid {primarycamel};
+            if(Guid.TryParse(id, out {primarycamel}))
+            {
+                try
+                {
+                    return Ok(service.SelectById({primarycamel}));
+                }
+                catch(InvalidOperationException ex)
+                {
+                    return NotFound(ex.Message);
+                }
+            }
+            return BadRequest("Malformed id provided");
+        }
+
+        [HttpGet("")]
+        public ActionResult<IEnumerable<{tablepascal}View>> Get{tablepascal}s()
+        {
+            var result = service.SelectAll();
+            if(result.Count() == 0)
+            {
+                return NotFound("No {tablelower}s");
+            }
+            return Ok(result);
+        }
+
+        [HttpPost("")]
+        public ActionResult<{tablepascal}View> Post{tablepascal}([FromBody] {tablepascal}View view)
+        {
+            return Ok(service.Insert(view));
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<string> Delete{tablepascal}([FromRoute] string id)
+        {
+            Guid {primarycamel};
+            if(Guid.TryParse(id, out {primarycamel}))
+            {
+                if(service.Delete({primarycamel}))
+                {
+                    return Ok("{tablepascal} removed");
+                }
+                return NotFound("{tablepascal} does not exist");
+            }
+            return BadRequest("Malformed id");
+        }
+
+        [HttpPut("")]
+        public ActionResult<string> Update{tablepascal}([FromBody] {tablepascal}View view)
+        {
+            if (service.Update(view))
+            {
+                return Ok("{tablepascal} updated");
+            }
+            return NotFound("{tablepascal} not found");
+        }{getforparent}{getbyunique}
+    }
+}

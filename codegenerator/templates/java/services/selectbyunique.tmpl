@@ -1,0 +1,7 @@
+	public {tablepascal}View selectBy{columnpascal}({coldatatype} value) {
+		{tablepascal} dbResult = repo.selectBy{columnpascal}(value);
+		if(dbResult == null) {
+			return null;
+		}
+		return {tablepascal}Mapper.toView(dbResult);
+	}

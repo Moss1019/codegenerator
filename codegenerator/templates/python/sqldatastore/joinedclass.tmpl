@@ -1,0 +1,30 @@
+
+from {projectname}.models import {primarypascal}
+from {projectname}.models import {secondarypascal}
+from {projectname}.models import {tablepascal}
+
+
+def create_{tablename}({tablename}):
+    try:
+        item = {primarypascal}.objects.get({primarycolname}={tablename}.{primarycolname})
+        user = {secondarypascal}.objects.get({secondarycolname}={tablename}.{secondarycolname})
+        new_{tablename} = {tablepascal}({primarycolname}=item.{primarycolname}, {secondarycolname}=user.{secondarycolname})
+        new_{tablename}.save()
+        return new_{tablename}
+    except Exception as e:
+        return None
+
+
+def delete_{tablename}({primarycolname}, {secondarycolname}):
+    try:
+        {tablename} = {tablepascal}.objects.get({primarycolname}={primarycolname}, {secondarycolname}={secondarycolname})
+        {tablename}.delete()
+        return True
+    except Exception as e:
+        return False
+
+
+def get_{tablename}s_for_{primaryname}({primarycolname}):
+    {secondarycolname}s = [entry.{secondarycolname} for entry in {tablepascal}.objects.filter({primarycolname}={primarycolname})]
+    {tablename}s = {secondarypascal}.objects.filter({secondarycolname}__in={secondarycolname}s)
+    return list({tablename}s)

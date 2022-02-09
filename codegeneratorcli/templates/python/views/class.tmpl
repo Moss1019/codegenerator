@@ -1,0 +1,66 @@
+import json
+
+from rest_framework.decorators import api_view
+from django.http import HttpResponse
+
+from {projectname}.data_store import {tablename}_store as store
+from {projectname}.serializers import UUIDEncoder, UUIDDecoder, {tablepascal}Serializer
+
+
+@api_view(['GET', 'DELETE'])
+def handle_{tablename}(request, {primaryname}):
+    if request.method == 'GET':
+        return get_{tablename}_by_pk(request, {primaryname})
+    if request.method == 'DELETE':
+        return delete_{tablename}(request, {primaryname})
+    return HttpResponse(status=204)
+
+
+def get_{tablename}_by_pk(request, {tablename}):
+    try:
+        {tablename} = store.get_{tablename}({tablename})
+        result = {tablepascal}Serializer().serialize({tablename})
+        return HttpResponse(json.dumps(result, cls=UUIDEncoder), content_type='application/json')
+    except Exception as e:
+        print(e)
+        return HttpResponse(status=404)
+
+
+def delete_{tablename}(request, {tablename}):
+    if store.delete_{tablename}({tablename}):
+        return HttpResponse()
+    else:
+        return HttpResponse(status=404)
+
+
+@api_view(['GET', 'POST'])
+def handle_{tablename}s(request):
+    if request.method == 'GET':
+        return get_{tablename}s(request)
+    if request.method == 'POST':
+        return create_{tablename}(request)
+    if request.method == 'PUT':
+        return update_{tablename}(request)
+    return HttpResponse(204)
+
+
+def get_{tablename}s(request):
+    {tablename}s = store.get_{tablename}s()
+    result = [{tablepascal}Serializer().serialize(entry) for entry in {tablename}s]
+    return HttpResponse(json.dumps(result, cls=UUIDEncoder), content_type='application/json')
+
+
+def create_{tablename}(request):
+    serializer = {tablepascal}Serializer()
+    obj = serializer.deserialize(request.body)
+    {tablename} = store.create_{tablename}(obj)
+    result = serializer.serialize({tablename})
+    return HttpResponse(json.dumps(result, cls=UUIDEncoder), content_type='application/json')
+
+
+def update_{tablename}(request):
+    obj = {tablepascal}Serializer().deserialize(request.body)
+    if store.update_{tablename}(obj):
+        return HttpResponse(True)
+    else:
+        return HttpResponse(status=404){getforparent}{getbyuniques}

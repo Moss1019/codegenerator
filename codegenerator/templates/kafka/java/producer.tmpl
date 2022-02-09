@@ -1,0 +1,39 @@
+package {rootname}.kafkainfra;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.LongSerializer;
+
+import java.util.Properties;
+
+import {rootname}.view.{tablepascal}View;
+
+public class {tablepascal}ViewProducer {
+  private static final String BOOTSTRAP_SERVERS = "localhost:29092";
+  private static final String TOPIC = "test-topic";
+
+  private static long nextId = 0;
+
+  private final Producer<Long, {tablepascal}View> producer;
+
+  public {tablepascal}ViewProducer() {
+    final Properties props = new Properties();
+    props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
+    props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, {tablepascal}ViewSerializer.class.getName());
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, BOOTSTRAP_SERVERS);
+    props.put(ProducerConfig.CLIENT_ID_CONFIG, "KafkaConsumerExample");
+    producer = new KafkaProducer<Long, {tablepascal}View>(props);
+  }
+
+  public boolean publish({tablepascal}View {tablecamel}) {
+    producer.send(new ProducerRecord<Long, {tablepascal}View>(TOPIC, ++nextId, {tablecamel}));
+    return true;
+  }
+
+  public void shutdown() {
+    producer.flush();
+    producer.close();
+  }
+}

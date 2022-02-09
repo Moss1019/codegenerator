@@ -1,0 +1,19 @@
+  public {tablepascal}View searchBy{columnpascal}(String {columncamel}) {
+    SearchRequest req = new SearchRequest("{tablecamel}s");
+    SearchSourceBuilder reqBuilder = new SearchSourceBuilder();
+    reqBuilder.query(QueryBuilders.termQuery("{columncamel}", {columncamel}));
+    reqBuilder.from(0);
+    reqBuilder.size(1);
+    reqBuilder.timeout(new TimeValue(10000));
+    req.source(reqBuilder);
+    try {
+      SearchResponse res = client.search(req, RequestOptions.DEFAULT);
+      if(res.getHits().getHits().length == 0) {
+        return null;
+      }
+      SearchHit hit = res.getHits().getHits()[0];
+      return deserialize(hit.getSourceAsString());
+    } catch (Exception ignored) {
+      return null;
+    }
+  }

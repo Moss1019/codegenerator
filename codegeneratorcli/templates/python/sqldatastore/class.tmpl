@@ -1,0 +1,38 @@
+
+from {projectname}.models import {tablepascal}{childimports}
+from uuid import UUID
+
+
+def get_{tablename}({primaryname}):
+    try:
+        {tablename} = {tablepascal}.objects.get({primaryname}={primaryname}){getchildlist}
+        return {tablename}
+    except Exception as e:
+        return None
+
+
+def get_{tablename}s():
+    {tablename}s = list({tablepascal}.objects.all()){getchildlists}
+    return list({tablename}s)
+
+
+def create_{tablename}(new_{tablename}):
+    {primaryfieldassignment}new_{tablename}.save()
+    return new_{tablename}
+
+
+def update_{tablename}({tablename}):
+    try:
+        {tablename}.save()
+        return True
+    except Exception as e:
+        return False
+
+
+def delete_{tablename}({primaryname}):
+    try:
+        {tablename} = {tablepascal}.objects.get({primaryname}={primaryname})
+        {tablename}.delete()
+        return True
+    except Exception as e:
+        return False{getforparent}{getbyuniques}

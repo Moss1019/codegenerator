@@ -1,0 +1,36 @@
+package {rootname}.service;
+
+import org.springframework.stereotype.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import {rootname}.entity.*;
+import {rootname}.view.*;
+import {rootname}.mapper.*;
+import {rootname}.repository.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.UUID;
+
+@Service
+public class {tablepascal}Service {
+	@Autowired
+	private {tablepascal}Repository repo;
+
+	public {tablepascal}View insert({tablepascal}View new{tablepascal}) {
+		{tablepascal} dbResult = repo.insert({tablepascal}Mapper.toEntity(new{tablepascal}));
+		return {tablepascal}Mapper.toView(dbResult);
+	}
+
+	public boolean delete({primarydatatype} {primarycamel}, {secondarydatatype} {secondarycamel}) {
+		return repo.delete({primarycamel}, {secondarycamel});
+	}
+
+	public List<{secondarytablepascal}View> select{tablepascal}s({primarydatatype} {primarycamel}) {
+		List<{secondarytablepascal}> dbResult = repo.select{tablepascal}s({primarycamel});
+		return dbResult.stream()
+				.map(x -> {secondarytablepascal}Mapper.toView(x))
+				.collect(Collectors.toList());
+	}
+}
