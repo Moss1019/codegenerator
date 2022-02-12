@@ -21,7 +21,9 @@ public class GuidGeneratorService {
   public List<String> generate(GuidGenerateRequest config) {
     List<String> uuids = new LinkedList<>();
     guidsGeneratedTotal.increment(config.getAmount());
-    for(int i = 0; i < config.getAmount(); ++i) {
+    int numToGenerate = config.getAmount();
+    numToGenerate = numToGenerate > 10 ? 5 : numToGenerate;
+    for(int i = 0; i < numToGenerate; ++i) {
       String newId = UUID.randomUUID().toString();
       if(config.isBraced()) {
         newId = String.format("{%s}", newId);

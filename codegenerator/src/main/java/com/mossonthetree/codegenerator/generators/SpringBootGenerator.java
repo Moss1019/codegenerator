@@ -31,7 +31,7 @@ public class SpringBootGenerator {
     frontendSystems = request.getFrontendSystems();
     dependencyTmpl = new FileHandler("./templates/springboot/dependency.tmpl").readFile();
     mysqlConfigTmpl = new FileHandler("./templates/springboot/mysqlconfig.tmpl").readFile();
-    tarFile = new TarFile(String.format("%s.tar.gz", db.getProjectName()));
+    tarFile = new TarFile();
   }
 
   public byte[] generate() {
@@ -43,6 +43,7 @@ public class SpringBootGenerator {
     }
     addBusinessLogicToTar();
     addFrontendLogicToTar();
+    tarFile.flush();
     byte[] data = tarFile.getContent();
     tarFile.close();
     return data;
