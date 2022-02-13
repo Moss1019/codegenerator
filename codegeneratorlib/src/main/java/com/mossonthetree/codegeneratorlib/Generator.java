@@ -25,7 +25,7 @@ public abstract class Generator {
     return content;
   }
 
-  protected abstract void loadTemplates();
-
   public abstract Map<String, String> generate();
+
+  protected abstract void loadTemplates();
 }

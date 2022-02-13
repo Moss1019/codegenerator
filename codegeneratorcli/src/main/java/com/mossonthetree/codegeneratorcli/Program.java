@@ -43,6 +43,9 @@ public class Program {
 
     com.mossonthetree.codegeneratorlib.elasticsearchdjango.DjangoElasticClientGenerator elasticGenerator = new com.mossonthetree.codegeneratorlib.elasticsearchdjango.DjangoElasticClientGenerator(db);
     writeFiles(elasticGenerator.generate(), "elasticinfra");
+
+    com.mossonthetree.codegeneratorlib.kafka.DjangoKafkaInfraGenerator kafkaGenerator = new com.mossonthetree.codegeneratorlib.kafka.DjangoKafkaInfraGenerator(db);
+    writeFiles(kafkaGenerator.generate(), "kafkainfra");
   }
 
   private static void generateJavaElasticInfra(Database db) {

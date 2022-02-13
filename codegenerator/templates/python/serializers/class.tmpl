@@ -33,7 +33,7 @@ class Serializer(object):
         return json.dumps(d)
 
     def deserialize(self, data):
-        j = json.loads(data.decode(), cls=UUIDDecoder)
+        j = json.loads(json_data, cls=UUIDDecoder)
         obj = self._type()
         for k in j:
             obj.set_field(self._to_snake(k), j[k])

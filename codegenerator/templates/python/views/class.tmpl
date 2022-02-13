@@ -52,14 +52,14 @@ def get_{tablename}s(request):
 
 def create_{tablename}(request):
     serializer = {tablepascal}Serializer()
-    obj = serializer.deserialize(request.body)
+    obj = serializer.deserialize(request.body.decode())
     {tablename} = store.create_{tablename}(obj)
     result = serializer.serialize({tablename})
     return HttpResponse(json.dumps(result, cls=UUIDEncoder), content_type='application/json')
 
 
 def update_{tablename}(request):
-    obj = {tablepascal}Serializer().deserialize(request.body)
+    obj = {tablepascal}Serializer().deserialize(request.body.decode())
     if store.update_{tablename}(obj):
         return HttpResponse(True)
     else:

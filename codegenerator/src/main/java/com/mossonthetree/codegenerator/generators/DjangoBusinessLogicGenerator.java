@@ -3,6 +3,7 @@ package com.mossonthetree.codegenerator.generators;
 import com.mossonthetree.codegenerator.parameter.ExternalSystem;
 import com.mossonthetree.codegeneratorlib.Database;
 import com.mossonthetree.codegeneratorlib.elasticsearchdjango.DjangoElasticClientGenerator;
+import com.mossonthetree.codegeneratorlib.kafka.DjangoKafkaInfraGenerator;
 import com.mossonthetree.codegeneratorlib.python.*;
 
 import java.util.HashMap;
@@ -37,7 +38,10 @@ public class DjangoBusinessLogicGenerator {
                     files.put("elasticinfra", elasticClientFiles);
                     break;
                 case kafka:
-
+                    DjangoKafkaInfraGenerator kafkaGenerator = new DjangoKafkaInfraGenerator(db);
+                    Map<String, String> kafkaFiles = kafkaGenerator.generate();
+                    kafkaFiles.put("__init__.py", "");
+                    files.put("kafkainfra", kafkaFiles);
                     break;
             }
         }
