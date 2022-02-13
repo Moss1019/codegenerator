@@ -1,10 +1,11 @@
 package com.mossonthetree.codegenerator.util;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 
 public class TemplatePaths {
   private static Map<String, String> springBootTemplates;
+  private static Map<String, String> djangoTemplates;
   
   public static Map<String, String> getSpringBootTemplates() {
     if(springBootTemplates == null) {
@@ -17,5 +18,15 @@ public class TemplatePaths {
       springBootTemplates.put("Program.java", "./templates/springboot/program.tmpl");
     }
     return springBootTemplates;
+  }
+
+  public static Map<String, String> getDjangoTemplates() {
+    if(djangoTemplates == null) {
+      djangoTemplates = new HashMap<>();
+      djangoTemplates.put("admin.py", "./templates/django/admin.tmpl");
+      djangoTemplates.put("apps.py", "./templates/django/apps.tmpl");
+      djangoTemplates.put("__init__.py", "./templates/django/init.tmpl");
+    }
+    return djangoTemplates;
   }
 }

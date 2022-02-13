@@ -40,6 +40,9 @@ public class Program {
 
     com.mossonthetree.codegeneratorlib.python.ViewGenerator viewGenerator = new com.mossonthetree.codegeneratorlib.python.ViewGenerator(db);
     writeFiles(viewGenerator.generate(), "views");
+
+    com.mossonthetree.codegeneratorlib.elasticsearchdjango.DjangoElasticClientGenerator elasticGenerator = new com.mossonthetree.codegeneratorlib.elasticsearchdjango.DjangoElasticClientGenerator(db);
+    writeFiles(elasticGenerator.generate(), "elasticinfra");
   }
 
   private static void generateJavaElasticInfra(Database db) {

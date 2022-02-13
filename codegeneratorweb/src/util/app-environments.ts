@@ -5,7 +5,8 @@ export interface AppEnvironment {
 }
 
 const appEnvironments: AppEnvironment[] = [
-  { value: 0, environment: 'Java' }
+  { value: 0, environment: 'Springboot' },
+  { value: 2, environment: 'Django' }
 ]
 
 export default appEnvironments;

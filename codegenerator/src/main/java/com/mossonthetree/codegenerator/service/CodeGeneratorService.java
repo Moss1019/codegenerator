@@ -1,5 +1,6 @@
 package com.mossonthetree.codegenerator.service;
 
+import com.mossonthetree.codegenerator.generators.DjangoGenerator;
 import com.mossonthetree.codegenerator.generators.SpringBootGenerator;
 import com.mossonthetree.codegenerator.util.DatabaseFactory;
 import com.mossonthetree.codegenerator.view.CodeGenerateRequest;
@@ -13,7 +14,16 @@ public class CodeGeneratorService {
     if(db == null) {
       return null;
     }
-    SpringBootGenerator generator = new SpringBootGenerator(db, request);
-    return generator.generate();
+    switch (request.getEnvironment()) {
+      case java: {
+        SpringBootGenerator generator = new SpringBootGenerator(db, request);
+        return generator.generate();
+      }
+      case django: {
+        DjangoGenerator generator = new DjangoGenerator(db, request);
+        return generator.generate();
+      }
+    }
+    return null;
   }
 }

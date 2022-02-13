@@ -178,24 +178,40 @@ function Configuration({
             Project name
           </Typography>
           <Grid container>
-            <Grid item xs={12} sm={6}>
-              <RequiredFormControl 
-                label="Root package/namespace" 
-                fieldName="rootName"
-                config={config}
-                errors={errors}
-                onConfigUpdate={onConfigUpdate}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <RequiredFormControl 
-                label="Project name"
-                fieldName="projectName"
-                config={config}
-                errors={errors}
-                onConfigUpdate={onConfigUpdate}
-              />
-            </Grid>
+            {config.environment === 0 &&
+            <>
+              <Grid item xs={12} sm={6}>
+                <RequiredFormControl 
+                  label="Root package/namespace" 
+                  fieldName="rootName"
+                  config={config}
+                  errors={errors}
+                  onConfigUpdate={onConfigUpdate}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <RequiredFormControl 
+                  label="Project name"
+                  fieldName="projectName"
+                  config={config}
+                  errors={errors}
+                  onConfigUpdate={onConfigUpdate}
+                />
+              </Grid>
+            </>}
+
+            {config.environment === 2 &&
+            <>
+              <Grid item xs={12}>
+                <RequiredFormControl 
+                  label="App name"
+                  fieldName="projectName"
+                  config={config}
+                  errors={errors}
+                  onConfigUpdate={onConfigUpdate}
+                />
+              </Grid>
+            </>}
           </Grid>
         </MarginedGridItem>
 

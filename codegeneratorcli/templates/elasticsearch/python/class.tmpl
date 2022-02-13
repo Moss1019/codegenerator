@@ -1,0 +1,39 @@
+
+import json
+
+from elasticsearch import Elasticsearch
+from serialiazers import {tablepascal}Serializer
+
+
+class {tablepascal}ElasticClient(object):
+    def __init__(self):
+        self._es = Elasticsearch('http://localhost:29200')
+        self._serializer = {tablepascal}Serializer()
+        self._index = '{tablename}-index'
+
+    def index(self, {tablename}):
+        json_str = self._serializer.serialize({tablename})
+        resp = self._es.index(index=self._index, id={tablename}.{primaryname}, document=json_str)
+        self._es.indices.refresh()
+        return resp['result'] == 'created'
+
+    def delete(self, agent):
+        resp = self._es.delete(index=self._index, id={tablename}.{primaryname})
+        return resp['_shards']['successful'] != '0'
+
+    def update(self, {tablename}):
+        json_str = self._serializer.serialize({tablename})
+        resp = self._es.index(index=self._index, id={tablename}.{primaryname}, document=json_str)
+        self._es.indices.refresh()
+        return resp['result'] == 'updated'
+
+    def get_by_id(self, {primaryname}):
+        query = {'match': {'{primarycamel}': {primaryname}}}
+        resp = self._es.search(index=self._index, query=query)
+        hits = resp['hits']['hits']
+        if len(hits) == 0:
+            return None
+        return self._serializer.deserialize(json.dumps(hits[0]['_source'])){searchbyuniques}
+
+    def close(self):
+        self._es.close()

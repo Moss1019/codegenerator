@@ -1,0 +1,7 @@
+    def search_by_{colname}(self, {colname}):
+        query = {'match': {'{colname}': {colname}}}
+        resp = self._es.search(index=self._index, query=query)
+        hits = resp['hits']['hits']
+        if len(hits) == 0:
+            return None
+        return self._serializer.deserialize(json.dumps(hits[0]['_source']))

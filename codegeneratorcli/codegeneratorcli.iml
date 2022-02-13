@@ -6,7 +6,7 @@
         <compilerSettings />
         <compilerArguments>
           <option name="languageVersion" value="1.6" />
-          <option name="apiVersion" value="1.6" />
+          <option name="apiVersion" value="1.5" />
           <option name="pluginOptions">
             <array />
           </option>
@@ -27,7 +27,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="openjdk-17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: com.mossonthetree:codegeneratorlib:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.antlr:antlr4-runtime:4.9.2" level="project" />

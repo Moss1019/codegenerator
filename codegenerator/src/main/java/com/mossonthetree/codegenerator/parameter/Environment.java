@@ -5,4 +5,5 @@ import java.io.Serializable;
 public enum Environment implements Serializable {
   java,
   asp,
+  django,
 }

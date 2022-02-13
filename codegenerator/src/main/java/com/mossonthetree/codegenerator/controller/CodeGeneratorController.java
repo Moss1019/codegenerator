@@ -17,26 +17,29 @@ import java.util.Base64;
 @Controller
 @RequestMapping("api/generated-apps")
 public class CodeGeneratorController {
-  @Autowired
-  private CodeGeneratorService service;
+    @Autowired
+    private CodeGeneratorService service;
 
-  private final Counter requestTotals;
-  private final Timer requestDuration;
+    private final Counter requestTotals;
+    private final Timer requestDuration;
 
-  public CodeGeneratorController(MeterRegistry registry) {
-    requestTotals = Counter.builder("codegen_generated_apps_requests_total")
-      .register(registry);
-    requestDuration = Timer.builder("codegen_generated_apps_request_duration")
-      .register(registry);
-  }
+    public CodeGeneratorController(MeterRegistry registry) {
+        requestTotals = Counter.builder("codegen_generated_apps_requests_total")
+                .register(registry);
+        requestDuration = Timer.builder("codegen_generated_apps_request_duration")
+                .register(registry);
+    }
 
-  @PostMapping("")
-  public ResponseEntity<?> generate(@RequestBody CodeGenerateRequest request) {
-    byte[] gzipFile = service.generate(request);
-    requestTotals.increment();
-    return requestDuration.record(() -> {
-      String encodedString = Base64.getEncoder().encodeToString(gzipFile);
-      return ResponseEntity.ok(encodedString);
-    });
-  }
+    @PostMapping("")
+    public ResponseEntity<?> generate(@RequestBody CodeGenerateRequest request) {
+        requestTotals.increment();
+        return requestDuration.record(() -> {
+            byte[] gzipFile = service.generate(request);
+            if (gzipFile == null) {
+                return ResponseEntity.badRequest().body("Unsupported request arguments");
+            }
+            String encodedString = Base64.getEncoder().encodeToString(gzipFile);
+            return ResponseEntity.ok(encodedString);
+        });
+    }
 }

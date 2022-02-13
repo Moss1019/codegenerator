@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class FilePathsGenerator {
   private static Map<String, String> springBootFilePaths;
+  private static Map<String, String> djangoFilePaths;
   
   public static Map<String, String> getSpringBootFilePaths(Database db) {
     if(springBootFilePaths == null) {
@@ -21,5 +22,15 @@ public class FilePathsGenerator {
         String.format("%s/src/main/java/%s/%s", db.getProjectName(), rootAsPath, db.getProjectName()));
     }
     return springBootFilePaths;
+  }
+
+  public static Map<String, String> getDjangoFilePaths(Database db) {
+    if(djangoFilePaths == null) {
+      djangoFilePaths = new HashMap<>();
+      djangoFilePaths.put("admin.py", db.getProjectName());
+      djangoFilePaths.put("apps.py", db.getProjectName());
+      djangoFilePaths.put("__init__.py", db.getProjectName());
+    }
+    return djangoFilePaths;
   }
 }
