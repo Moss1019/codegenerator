@@ -1,4 +1,4 @@
-tag='mossonthetree/codegenerator:latest'
+tag='codegen'
 
 docker rmi $tag
 

@@ -1,0 +1,16 @@
+version: "3.3"
+
+services:
+  codegen:
+    image: codegen
+    container_name: codegen
+    ports:
+      - 8080:8080
+    
+  codegenweb:
+    image: codegenweb
+    container_name: codegenweb
+    environment:
+     - MODE="debug"
+    ports:
+      - 3000:3000

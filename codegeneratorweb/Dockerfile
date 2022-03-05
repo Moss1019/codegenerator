@@ -7,5 +7,7 @@ EXPOSE 3000
 
 WORKDIR /var/app/site
 
+ENV BACKEND="http://localhost:8080"
+
 RUN npm ic
 CMD ["npm", "run", "start"]

@@ -1,14 +1,14 @@
-tag='mossonthetree/codegeneratorweb:latest'
+tag='codegenweb'
 
-rm -rf ./build
+rm -r ./build
 docker rmi $tag
 
 npm ic && npm run build
 
 cd ./server
 
-rm -rf ./node_modules
-rm -rf ./public
+rm -r ./node_modules
+rm -r ./public
 
 cd ..
 

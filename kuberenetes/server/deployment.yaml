@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: ReplicaSet
 
 metadata:
-  name: codegenweb
+  name: codegen
   namespace: codegen-ns
 
 spec:
@@ -13,20 +13,20 @@ spec:
       - key: app
         operator: In
         values:
-          - codegenweb
+          - codegen
   
   template:
     metadata:
       labels:
-        app: codegenweb
+        app: codegen
   
     spec:
       containers:
-        - name: codegeneratorweb
-          # image: localhost:32000/codegeneratorweb:latest
-          image: codegeneratorweb
+        - name: codegenerator
+          image: codegenerator
+          # image: localhost:5000/codegenerator
           imagePullPolicy: Never
           ports:
-          - containerPort: 3000
+          - containerPort: 8080
             protocol: TCP
   

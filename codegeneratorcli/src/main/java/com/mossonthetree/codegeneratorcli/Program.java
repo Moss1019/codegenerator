@@ -18,7 +18,7 @@ public class Program {
       Database db = (new DatabaseFactory()).create(loadTestFile(), projectName, root, dbType);
       System.out.println(db);
 
-      generateDjangoFiles(db);
+      generateJavaFiles(db);
 
     } catch (Exception ex) {
       ex.printStackTrace();
