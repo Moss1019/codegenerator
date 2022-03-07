@@ -54,7 +54,7 @@ public class SpringBootGenerator {
                 .replace("{rootname}", db.getRootName())
                 .replace("{projectname}", db.getProjectName())
                 .replace("{dependencies}", generateDependencies())
-                .replace("{javaversion}", "17")
+                .replace("{javaversion}", "11")
                 .replace("{dbconfig}", generateDBConfig());
     }
 

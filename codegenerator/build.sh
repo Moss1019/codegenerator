@@ -1,8 +1,4 @@
-tag='codegen'
 
-docker rmi $tag
+export PORT=8080
 
-mvn clean
 mvn package
-
-docker build -t $tag .
