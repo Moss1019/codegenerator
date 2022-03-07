@@ -1,13 +1,9 @@
 FROM node
-# FROM arm64v8/node
 
-COPY ./server/ /var/app/site
-
-EXPOSE 3000
+COPY ./server/public/* /var/app/site/
 
 WORKDIR /var/app/site
 
-ENV BACKEND="http://localhost:8080"
-
 RUN npm ic
-CMD ["npm", "run", "start"]
+# ENTRYPOINT ["npm", "run", "start"]
+ENTRYPOINT ["bash"]
