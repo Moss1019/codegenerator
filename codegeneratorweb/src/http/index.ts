@@ -4,7 +4,7 @@ import { GuidRequest } from '../model/guid-request';
 
 const prod = process.env.NODE_ENV === 'production';
 
-const host = prod ? 'http://localhost:8080' : 'http://192.168.1.100';
+const host = prod ? 'https://moss1019-codegen.herokuapp.com/' : 'http://192.168.1.100';
 const port = prod ? '' : ':8080';
 
 const baseUrl = `${host}${port}/api`;

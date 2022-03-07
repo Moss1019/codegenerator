@@ -10,6 +10,9 @@ app.get('/', (req, res) => {
 app.get('/manifest.json', (req, res) => {
     res.sendFile(path.join(__dirname, 'asset-manifest.json'));
 });
+app.get('/iceberg.png', (req, res) => {
+    res.sendFile(path.join(__dirname, 'logo_iceberg.svg'));
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
