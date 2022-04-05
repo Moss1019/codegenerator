@@ -1,0 +1,51 @@
+package {rootname}.repository;
+
+import {rootname}.entity.*;
+
+import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import java.util.*;
+
+@Repository
+@Transactional
+public class {tablepascal}Repository {
+    @PersistenceContext
+    private EntityManager em;
+
+    public {tablepascal} insert({tablepascal} {tablecamel}) {{setparents}
+        em.persist({tablecamel});
+        return {tablecamel};
+    }
+
+    public boolean delete({primarydatatype} value) {
+        {tablepascal} obj = em.find({tablepascal}.class, value);
+        if (obj == null) {
+            return false;
+        }
+        em.remove(obj);
+        return true;
+    }
+
+    public List<{tablepascal}> selectAll() {
+        String jpa = "select x from {tablecamel} x";
+        return em.createQuery(jpa).getResultList();
+    }
+
+    public {tablepascal} selectByPk({primarydatatype} {primarycolcamel}) {
+        {tablepascal} obj = em.find({tablepascal}.class, {primarycolcamel});
+        return obj;
+    }{selectbyunique}{selectofparent}
+
+    public boolean update({tablepascal} updated) {
+        {tablepascal} obj = em.find({tablepascal}.class, updated.get{primarycolpascal}());
+        if (obj == null) {
+        return false;
+        }{setcolumns}
+        em.flush();
+        return true;
+    }
+}

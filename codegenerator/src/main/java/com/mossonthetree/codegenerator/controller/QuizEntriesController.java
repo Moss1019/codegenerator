@@ -1,6 +1,6 @@
 package com.mossonthetree.codegenerator.controller;
 
-import com.mossonthetree.codegenerator.service.QuizEntriesService;
+import com.mossonthetree.codegenerator.service.QuizEntryService;
 import com.mossonthetree.codegenerator.view.QuizEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("api/quiz-entries")
 public class QuizEntriesController {
     @Autowired
-    private QuizEntriesService service;
+    private QuizEntryService service;
 
     @GetMapping("")
     public ResponseEntity<?> getQuizEntries() {

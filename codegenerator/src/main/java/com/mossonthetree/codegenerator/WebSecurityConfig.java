@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableWebMvc
 public class WebSecurityConfig implements WebMvcConfigurer {
-  @Override
-  public void addCorsMappings(CorsRegistry registry) {
-    registry
-      .addMapping("/**")
-      .allowedMethods("*");
-  }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry
+                .addMapping("/**")
+                .allowedMethods("*");
+    }
 }

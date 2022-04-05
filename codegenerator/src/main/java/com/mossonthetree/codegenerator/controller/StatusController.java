@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("")
 public class StatusController {
-  @GetMapping("")
-  public ResponseEntity<?> getStatus() {
-    return ResponseEntity.ok("up");
-  }
+    @GetMapping("")
+    public ResponseEntity<?> getStatus() {
+        return ResponseEntity.ok("up");
+    }
 }

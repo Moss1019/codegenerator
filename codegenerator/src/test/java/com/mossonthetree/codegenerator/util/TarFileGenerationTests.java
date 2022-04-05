@@ -24,37 +24,40 @@ public class TarFileGenerationTests {
 
         // Act
         File tarFile = new File(tarFileName);
-        try(FileOutputStream fOStream = new FileOutputStream(tarFile);
-            GZIPOutputStream gzipOStream = new GZIPOutputStream(fOStream);
-            TarArchiveOutputStream tarOStream = new TarArchiveOutputStream(gzipOStream)) {
+        try (FileOutputStream fOStream = new FileOutputStream(tarFile);
+             GZIPOutputStream gzipOStream = new GZIPOutputStream(fOStream);
+             TarArchiveOutputStream tarOStream = new TarArchiveOutputStream(gzipOStream)) {
 
             FileHandler fHandler = new FileHandler(tempFileName);
             fHandler.writeFile(content);
             File temp = new File(tempFileName);
             try (FileInputStream fIStream = new FileInputStream(temp);
-                BufferedInputStream bufIStream = new BufferedInputStream(fIStream)) {
+                 BufferedInputStream bufIStream = new BufferedInputStream(fIStream)) {
                 tarOStream.putArchiveEntry(new TarArchiveEntry(temp, path));
                 IOUtils.copy(bufIStream, tarOStream);
                 tarOStream.closeArchiveEntry();
-            } catch (Exception ignored) {}
-            finally {
+            } catch (Exception ignored) {
+            } finally {
                 temp.delete();
             }
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         // Assert
-        try(FileInputStream fIStream = new FileInputStream(tarFile);
-            GZIPInputStream gzipIStream = new GZIPInputStream(fIStream);
-            TarArchiveInputStream tarIStream = new TarArchiveInputStream(gzipIStream)) {
+        try (FileInputStream fIStream = new FileInputStream(tarFile);
+             GZIPInputStream gzipIStream = new GZIPInputStream(fIStream);
+             TarArchiveInputStream tarIStream = new TarArchiveInputStream(gzipIStream)) {
 
             TarArchiveEntry entry = tarIStream.getNextTarEntry();
             File entryFile = entry.getFile();
             Assert.isTrue(entryFile.equals(path), "File path not equal: " + entryFile.getPath());
-            try(FileInputStream tarFileIStream = new FileInputStream(entryFile)) {
+            try (FileInputStream tarFileIStream = new FileInputStream(entryFile)) {
                 String fileContent = new String(tarFileIStream.readAllBytes());
                 Assert.isTrue(fileContent.equals(content), "File content not equal: " + fileContent);
-            } catch (Exception ignored) {}
-        } catch (Exception ignored) {}
+            } catch (Exception ignored) {
+            }
+        } catch (Exception ignored) {
+        }
         tarFile.delete();
     }
 }

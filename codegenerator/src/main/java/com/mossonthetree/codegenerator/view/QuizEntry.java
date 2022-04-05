@@ -6,7 +6,8 @@ public class QuizEntry {
     private String article;
     private String translation;
 
-    public QuizEntry(){}
+    public QuizEntry() {
+    }
 
     public QuizEntry(String word, String plural, String article, String translation) {
         this.word = word;

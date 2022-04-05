@@ -12,58 +12,58 @@ import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
 public class SpringBootGeneratorTests {
-  @Test
-  public void testSpringBootGenerator_callGenerate_returnsBytes() {
-    // Arrange
-    Database testDb = createTestDb();
-    CodeGenerateRequest request = createTestCodeGenerateRequest();
-    SpringBootGenerator sut = new SpringBootGenerator(testDb, request);
+    @Test
+    public void testSpringBootGenerator_callGenerate_returnsBytes() {
+        // Arrange
+        Database testDb = createTestDb();
+        CodeGenerateRequest request = createTestCodeGenerateRequest();
+        SpringBootGenerator sut = new SpringBootGenerator(testDb, request);
 
-    // Act
-    byte[] bytes = sut.generate();
+        // Act
+        byte[] bytes = sut.generate();
 
-    // Assert
-    Assert.isTrue(bytes.length > 0, "No content generated");
-  }
+        // Assert
+        Assert.isTrue(bytes.length > 0, "No content generated");
+    }
 
-  private Database createTestDb() {
-    return new DatabaseBuilder()
-      .withRootName("todo")
-      .withProjectName("example")
-      .withType(DatabaseType.Sql)
-      .addTable(new TableBuilder()
-        .withName("agent")
-        .addColumn(new ColumnBuilder()
-          .withName("agent_id")
-          .withDataType("int")
-          .asPrimary()
-          .asAutoIncrement()
-          .build())
-        .addColumn(new ColumnBuilder()
-          .withName("username")
-          .withDataType("string")
-          .asUnique()
-          .build())
-        .build())
-      .addTable(new TableBuilder()
-        .withName("item")
-        .addColumn(new ColumnBuilder()
-          .withName("item_id")
-          .withDataType("int")
-          .asPrimary()
-          .asAutoIncrement()
-          .build())
-        .addColumn(new ColumnBuilder()
-          .withName("title")
-          .withDataType("string")
-          .build())
-        .build())
-      .build();
-  }
+    private Database createTestDb() {
+        return new DatabaseBuilder()
+                .withRootName("todo")
+                .withProjectName("example")
+                .withType(DatabaseType.Sql)
+                .addTable(new TableBuilder()
+                        .withName("agent")
+                        .addColumn(new ColumnBuilder()
+                                .withName("agent_id")
+                                .withDataType("int")
+                                .asPrimary()
+                                .asAutoIncrement()
+                                .build())
+                        .addColumn(new ColumnBuilder()
+                                .withName("username")
+                                .withDataType("string")
+                                .asUnique()
+                                .build())
+                        .build())
+                .addTable(new TableBuilder()
+                        .withName("item")
+                        .addColumn(new ColumnBuilder()
+                                .withName("item_id")
+                                .withDataType("int")
+                                .asPrimary()
+                                .asAutoIncrement()
+                                .build())
+                        .addColumn(new ColumnBuilder()
+                                .withName("title")
+                                .withDataType("string")
+                                .build())
+                        .build())
+                .build();
+    }
 
-  private CodeGenerateRequest createTestCodeGenerateRequest() {
-    return new CodeGenerateRequestBuilder()
-      .withEnvironment(Environment.java)
-      .build();
-  }
+    private CodeGenerateRequest createTestCodeGenerateRequest() {
+        return new CodeGenerateRequestBuilder()
+                .withEnvironment(Environment.java)
+                .build();
+    }
 }

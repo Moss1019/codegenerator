@@ -31,7 +31,7 @@ public class DjangoGenerator {
     }
 
     public byte[] generate() {
-        for(String fileName: generatedFilePaths.keySet()) {
+        for (String fileName : generatedFilePaths.keySet()) {
             FileHandler fHandler = new FileHandler(templatePaths.get(fileName));
             String template = fHandler.readFile();
             String generatedFilePath = generatedFilePaths.get(fileName);
@@ -55,14 +55,14 @@ public class DjangoGenerator {
     private void addBusinessLogicToTar() {
         DjangoBusinessLogicGenerator djangoBusinessLogicGenerator = new DjangoBusinessLogicGenerator(db, externalSystems);
         Map<String, String> rootLevelFiles = djangoBusinessLogicGenerator.generateRootLevelFiles();
-        for(String fileName: rootLevelFiles.keySet()) {
+        for (String fileName : rootLevelFiles.keySet()) {
             String fullFileName = String.format("%s/%s", db.getProjectName(), fileName);
             String fileContent = rootLevelFiles.get(fileName);
             tarFile.addEntry(fullFileName, fileContent);
         }
         Map<String, Map<String, String>> folderFiles = djangoBusinessLogicGenerator.generate();
-        for(String folderName: folderFiles.keySet()) {
-            for(String fileName: folderFiles.get(folderName).keySet()) {
+        for (String folderName : folderFiles.keySet()) {
+            for (String fileName : folderFiles.get(folderName).keySet()) {
                 String fullFileName = String.format("%s/%s/%s", db.getProjectName(), folderName, fileName);
                 String fileContent = folderFiles.get(folderName).get(fileName);
                 tarFile.addEntry(fullFileName, fileContent);

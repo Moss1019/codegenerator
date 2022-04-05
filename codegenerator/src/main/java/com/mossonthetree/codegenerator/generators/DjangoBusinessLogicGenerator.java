@@ -29,8 +29,8 @@ public class DjangoBusinessLogicGenerator {
         Map<String, String> viewFiles = viewGenerator.generate();
         viewFiles.put("__init__.py", "");
         files.put("views", viewGenerator.generate());
-        for(ExternalSystem externalSystem: externalDependencies) {
-            switch(externalSystem) {
+        for (ExternalSystem externalSystem : externalDependencies) {
+            switch (externalSystem) {
                 case elastic:
                     DjangoElasticClientGenerator djangoElasticClientGenerator = new DjangoElasticClientGenerator(db);
                     Map<String, String> elasticClientFiles = djangoElasticClientGenerator.generate();
@@ -52,17 +52,17 @@ public class DjangoBusinessLogicGenerator {
         Map<String, String> files = new HashMap<>();
         UrlGenerator urlGenerator = new UrlGenerator(db);
         Map<String, String> urlFiles = urlGenerator.generate();
-        for(String fileName: urlFiles.keySet()) {
+        for (String fileName : urlFiles.keySet()) {
             files.put(fileName, urlFiles.get(fileName));
         }
         ModelsGenerator modelsGenerator = new ModelsGenerator(db);
         Map<String, String> modelFiles = modelsGenerator.generate();
-        for(String fileName: modelFiles.keySet()) {
+        for (String fileName : modelFiles.keySet()) {
             files.put(fileName, modelFiles.get(fileName));
         }
         SerializerGenerator serializerGenerator = new SerializerGenerator(db);
         Map<String, String> serializerFiles = serializerGenerator.generate();
-        for(String fileName: serializerFiles.keySet()) {
+        for (String fileName : serializerFiles.keySet()) {
             files.put(fileName, serializerFiles.get(fileName));
         }
         return files;

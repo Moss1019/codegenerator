@@ -1,0 +1,308 @@
+[
+  {
+    "word": "man",
+    "plural": "mannen",
+    "article": "de",
+    "translation": "man"
+  },
+  {
+    "word": "vrouw",
+    "plural": "vrouwen",
+    "article": "de",
+    "translation": "woman"
+  },
+  {
+    "word": "kind",
+    "plural": "kinderen",
+    "article": "het",
+    "translation": "child"
+  },
+  {
+    "word": "auto",
+    "plural": "autos",
+    "article": "de",
+    "translation": "car"
+  },
+  {
+    "word": "bestelling",
+    "plural": "bestellingen",
+    "article": "de",
+    "translation": "order"
+  },
+  {
+    "word": "pand",
+    "plural": "panden",
+    "article": "het",
+    "translation": "building"
+  },
+  {
+    "word": "aanhef",
+    "plural": "aanheffen",
+    "article": "de",
+    "translation": "opening word"
+  },
+  {
+    "word": "achtergevel",
+    "plural": "achtergevels",
+    "article": "de",
+    "translation": "back facing wall"
+  },
+  {
+    "word": "agenda",
+    "plural": "agenda's",
+    "article": "de",
+    "translation": "agenda"
+  },
+  {
+    "word": "allergie",
+    "plural": "allergieën",
+    "article": "de",
+    "translation": "allergy"
+  },
+  {
+    "word": "antwoord",
+    "plural": "antwoorden",
+    "article": "het",
+    "translation": "answer"
+  },
+  {
+    "word": "baan",
+    "plural": "banen",
+    "article": "de",
+    "translation": "work"
+  },
+  {
+    "word": "gerecht",
+    "plural": "gerechten",
+    "article": "het",
+    "translation": "meal"
+  },
+  {
+    "word": "water",
+    "plural": "waters",
+    "article": "het",
+    "translation": "water"
+  },
+  {
+    "word": "ijs",
+    "plural": "ijs",
+    "article": "het",
+    "translation": "ice"
+  },
+  {
+    "word": "tafel",
+    "plural": "tafels",
+    "article": "de",
+    "translation": "table"
+  },
+  {
+    "word": "meubel",
+    "plural": "meubels",
+    "article": "het",
+    "translation": "furniture"
+  },
+  {
+    "word": "bier",
+    "plural": "bieren",
+    "article": "het",
+    "translation": "beer"
+  },
+  {
+    "word": "hemd",
+    "plural": "hemden",
+    "article": "het",
+    "translation": "shirt"
+  },
+  {
+    "word": "broek",
+    "plural": "broeken",
+    "article": "de",
+    "translation": "pants"
+  },
+  {
+    "word": "sok",
+    "plural": "sokken",
+    "article": "de",
+    "translation": "sock"
+  },
+  {
+    "word": "scalpel",
+    "plural": "scalpels",
+    "article": "het",
+    "translation": "scalpel"
+  },
+  {
+    "word": "mes",
+    "plural": "messen",
+    "article": "het",
+    "translation": "knife"
+  },
+  {
+    "word": "vork",
+    "plural": "vorken",
+    "article": "de",
+    "translation": "fork"
+  },
+  {
+    "word": "lepel",
+    "plural": "lepels",
+    "article": "de",
+    "translation": "spoon"
+  },
+  {
+    "word": "muis",
+    "plural": "muizen",
+    "article": "de",
+    "translation": "mouse"
+  },
+  {
+    "word": "rat",
+    "plural": "ratter",
+    "article": "de",
+    "translation": "rat"
+  },
+  {
+    "word": "paard",
+    "plural": "paarden",
+    "article": "het",
+    "translation": "horse"
+  },
+  {
+    "word": "schaap",
+    "plural": "schapen",
+    "article": "het",
+    "translation": "scheep"
+  },
+  {
+    "word": "hond",
+    "plural": "honden",
+    "article": "de",
+    "translation": "dog"
+  },
+  {
+    "word": "vogel",
+    "plural": "vogels",
+    "article": "de",
+    "translation": "bird"
+  },
+  {
+    "word": "baan",
+    "plural": "banen",
+    "article": "de",
+    "translation": "work"
+  },
+  {
+    "word": "trein",
+    "plural": "treinen",
+    "article": "de",
+    "translation": "train"
+  },
+  {
+    "word": "station",
+    "plural": "stationen",
+    "article": "het",
+    "translation": "station"
+  },
+  {
+    "word": "vliegtuig",
+    "plural": "vliegtuigen",
+    "article": "het",
+    "translation": "airplane"
+  },
+  {
+    "word": "vraag",
+    "plural": "vragen",
+    "article": "de",
+    "translation": "question"
+  },
+  {
+    "word": "plan",
+    "plural": "plannen",
+    "article": "het",
+    "translation": "plan"
+  },
+  {
+    "word": "idee",
+    "plural": "ideeën",
+    "article": "het",
+    "translation": "idea"
+  },
+  {
+    "word": "stoel",
+    "plural": "stoelen",
+    "article": "de",
+    "translation": "chair"
+  },
+  {
+    "word": "keer",
+    "plural": "keren",
+    "article": "de",
+    "translation": "time"
+  },
+  {
+    "word": "tijd",
+    "plural": "tijden",
+    "article": "de",
+    "translation": "time"
+  },
+  {
+    "word": "beurt",
+    "plural": "beurten",
+    "article": "de",
+    "translation": "turn"
+  },
+  {
+    "word": "buurt",
+    "plural": "buurten",
+    "article": "de",
+    "translation": "neighborhood"
+  },
+  {
+    "word": "slang",
+    "plural": "slangen",
+    "article": "de",
+    "translation": "snake"
+  },
+  {
+    "word": "wants",
+    "plural": "wanten",
+    "article": "de",
+    "translation": "tree bug"
+  },
+  {
+    "word": "idee",
+    "plural": "ideeën",
+    "article": "het",
+    "translation": "idea"
+  },
+  {
+    "word": "aap",
+    "plural": "apen",
+    "article": "de",
+    "translation": "monkey"
+  },
+  {
+    "word": "baviaan",
+    "plural": "bavianen",
+    "article": "de",
+    "translation": "baboon"
+  },
+  {
+    "word": "ziekenhuis",
+    "plural": "ziekenhuizen",
+    "article": "het",
+    "translation": "hospital"
+  },
+  {
+    "word": "hospitaal",
+    "plural": "hospitalen",
+    "article": "het",
+    "translation": "hospital"
+  },
+  {
+    "word": "taal",
+    "plural": "talen",
+    "article": "de",
+    "translation": "langauge"
+  }
+]
